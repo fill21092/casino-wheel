@@ -1,19 +1,38 @@
-
-<!DOCTYPE html>
-<html lang="en">
+<<!DOCTYPE html>
+<html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Casino Roulette</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Казино Рулетка</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; background-color: #111; color: #fff; }
+    #wheel { margin: 20px auto; width: 300px; height: 300px; border: 10px solid #fff; border-radius: 50%; position: relative; }
+    .segment { position: absolute; width: 50%; height: 50%; background: red; clip-path: polygon(100% 50%, 0 0, 0 100%); transform-origin: 100% 50%; }
+    #spinBtn { padding: 10px 30px; font-size: 18px; cursor: pointer; margin-top: 20px; background: gold; border: none; border-radius: 10px; }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Крути рулетку!</h1>
-    <canvas id="wheelcanvas" width="500" height="500"></canvas>
-    <button onclick="spin()">Крутить</button>
-    <p id="result"></p>
+  <h1>🎲 Попробуй удачу!</h1>
+  <div id="wheel">
+    <!-- Простейшие сегменты -->
+    <div class="segment" style="transform: rotate(0deg); background: green;"></div>
+    <div class="segment" style="transform: rotate(60deg); background: blue;"></div>
+    <div class="segment" style="transform: rotate(120deg); background: red;"></div>
+    <div class="segment" style="transform: rotate(180deg); background: yellow;"></div>
+    <div class="segment" style="transform: rotate(240deg); background: orange;"></div>
+    <div class="segment" style="transform: rotate(300deg); background: purple;"></div>
   </div>
-  <script src="script.js"></script>
+  <button id="spinBtn">Крутить!</button>
+
+  <script>
+    const wheel = document.getElementById('wheel');
+    const spinBtn = document.getElementById('spinBtn');
+
+    spinBtn.addEventListener('click', () => {
+      const degrees = 360 * 5 + Math.floor(Math.random() * 360); // всегда выигрыш
+      wheel.style.transition = 'transform 4s ease-out';
+      wheel.style.transform = `rotate(${degrees}deg)`;
+    });
+  </script>
 </body>
 </html>
